@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>유림상사 카테고리 - 제품별 부자재 안내</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="유림상사에서 취급하는 지퍼, 스토퍼, 스냅, 라벨, 웨빙 등 의류 중심 부자재 카테고리를 한눈에 확인하세요." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&amp;family=Noto+Sans+KR:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, system-ui,
+                         "Apple SD Gothic Neo", "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            color: #111827;
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+        .container {
+            width: 100%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+            background: rgba(245,245,247,0.9);
+            border-bottom: 1px solid rgba(229,231,235,0.9);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-mark {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            border: 1.5px solid #111827;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            transform: rotate(35deg);
+        }
+        .logo-text-main {
+            font-size: 19px;
+            font-weight: 650;
+            letter-spacing: -0.04em;
+        }
+        .logo-text-sub {
+            font-size: 11px;
+            color: #6b7280;
+        }
+        nav {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+        nav a { padding: 4px 0; }
+        nav a:hover { color: #111827; }
+        main {
+            padding: 72px 0 96px;
+        }
+        h1, h2, h3 {
+            font-family: "Outfit", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #111827;
+        }
+        h1 { font-size: 30px; }
+        h2 { font-size: 22px; }
+        h3 { font-size: 17px; }
+        p {
+            font-size: 15px;
+            color: #4b5563;
+        }
+        .breadcrumb {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 14px;
+        }
+        .breadcrumb a {
+            color: #6b7280;
+        }
+        .breadcrumb span.sep {
+            margin: 0 4px;
+        }
+        .page-header {
+            margin-bottom: 32px;
+        }
+        .page-header p {
+            margin-top: 6px;
+        }
+        .category-layout {
+            display: grid;
+            grid-template-columns: 260px minmax(0,1fr);
+            gap: 24px;
+        }
+        .category-sidebar {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            padding: 16px 14px 18px;
+            font-size: 14px;
+        }
+        .sidebar-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #111827;
+        }
+        .sidebar-list {
+            list-style: none;
+            font-size: 13px;
+            color: #4b5563;
+        }
+        .sidebar-list li {
+            padding: 6px 4px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .sidebar-list li:hover {
+            background: #f3f4f6;
+        }
+        .sidebar-list li strong {
+            color: #111827;
+        }
+        .category-content {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .category-block {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            padding: 18px 18px 20px;
+            box-shadow: 0 12px 32px rgba(15,23,42,0.04);
+        }
+        .category-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .category-badge {
+            font-size: 11px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #fff6ee;
+            color: #ff7b2a;
+        }
+        .category-tags {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+        .category-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .category-chip {
+            font-size: 12px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+        .category-desc {
+            font-size: 13.5px;
+            color: #6b7280;
+        }
+        .note {
+            margin-top: 26px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        footer {
+            border-top: 1px solid #e5e7eb;
+            padding: 18px 0 24px;
+            font-size: 12px;
+            color: #6b7280;
+            background: #f9fafb;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 900px) {
+            .category-layout {
+                grid-template-columns: minmax(0,1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            nav { display: none; }
+            main { padding-top: 56px; }
+        }
+    
+        .logo-img {
+            height: 32px;
+            display: block;
+        }
+    
+        .floating-kakao {
+            position: fixed;
+            bottom: 24px;
+            right: 22px;
+            z-index: 9999;
+            width: 64px;
+            height: 64px;
+            background: #FEE500;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            transition: transform .15s ease;
+        }
+        .floating-kakao:hover {
+            transform: translateY(-3px);
+        }
+        .floating-kakao img {
+            width: 36px;
+            height: 36px;
+            display: block;
+        }
+        @media (max-width: 640px) {
+            .floating-kakao {
+                bottom: 18px;
+                right: 16px;
+                width: 56px;
+                height: 56px;
+            }
+            .floating-kakao img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        </style>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<div class="logo">
+<img alt="YURIM SUPPLIES Logo" class="logo-img" src="yurim_supplies_orange_logo_transparent.png"/>
+<div>
+<div class="logo-text-main">YURIM</div>
+<div class="logo-text-sub">Trims &amp; Components</div>
+</div>
+</div>
+<nav>
+<a href="index.html#top">메인</a>
+<a href="index.html#category">제품군</a>
+<a href="categories.html">카테고리 상세</a>
+<a href="index.html#contact">문의</a>
+</nav>
+</div>
+</header>
+<main>
+<div class="container">
+<div class="breadcrumb">
+<a href="index.html">홈</a> <span class="sep">/</span> 카테고리 상세
+        </div>
+<div class="page-header">
+<h1>제품 카테고리 상세</h1>
+<p>
+                유림상사가 취급하는 주요 부자재 카테고리를 한눈에 정리한 페이지입니다.<br/>
+                실제 프로젝트에서는 이 중 필요한 카테고리를 중심으로 협의·제안을 진행합니다.
+            </p>
+</div>
+<div class="category-layout">
+<aside class="category-sidebar">
+<div class="sidebar-title">카테고리 요약</div>
+<ul class="sidebar-list">
+<li><strong>지퍼(Zip)</strong> · 나일론 / 비슬론 / 메탈</li>
+<li><strong>스토퍼 &amp; 코드락</strong></li>
+<li><strong>스냅 · 단추 · 아일릿</strong></li>
+<li><strong>라벨 · 와펜 · 탭</strong></li>
+<li><strong>밴드 · 웨빙 · 코드류</strong></li>
+<li><strong>버클 · 스트랩 하드웨어</strong></li>
+<li><strong>기능성 &amp; 특수 부자재</strong></li>
+</ul>
+</aside>
+<section class="category-content">
+<div class="category-block">
+<div class="category-block-header">
+<h2>지퍼 (Zipper Line)</h2>
+<span class="category-badge">Core</span>
+</div>
+<div class="category-tags">나일론 지퍼 · 비슬론 지퍼 · 메탈 지퍼 · 양면·역방향 등</div>
+<div class="category-items">
+<div class="category-chip">일반 나일론 지퍼</div>
+<div class="category-chip">방수/코팅 지퍼</div>
+<div class="category-chip">비슬론(몰딩) 지퍼</div>
+<div class="category-chip">메탈 지퍼</div>
+<div class="category-chip">투웨이(양방향)</div>
+<div class="category-chip">분리형 / 논분리형</div>
+</div>
+<p class="category-desc">
+                        스포츠 의류, 기능성 아우터, 유니폼 및 각종 커버류에 사용되는 지퍼를 사양·용도에 맞게 구성합니다.
+                        디자인, 내구성, 원가를 함께 고려해 적합한 타입을 제안 드립니다.
+                    </p>
+</div>
+<div class="category-block">
+<div class="category-block-header">
+<h2>스토퍼 &amp; 코드락</h2>
+<span class="category-badge">Core</span>
+</div>
+<div class="category-tags">후드, 밑단, 조거 등 스트링 파츠</div>
+<div class="category-items">
+<div class="category-chip">플라스틱 스토퍼</div>
+<div class="category-chip">메탈 스토퍼</div>
+<div class="category-chip">원형 / 사각 / 슬림형</div>
+<div class="category-chip">원터치 코드락</div>
+<div class="category-chip">양구멍 / 단구멍 타입</div>
+</div>
+<p class="category-desc">
+                        후드, 밑단, 허리 등 조절이 필요한 부분에 사용되는 스토퍼 및 코드락류를 제공합니다.
+                        사용 편의성과 디자인, 생산성을 함께 고려해 적절한 제품을 추천합니다.
+                    </p>
+</div>
+<div class="category-block">
+<div class="category-block-header">
+<h2>스냅 · 단추 · 아일릿</h2>
+<span class="category-badge">Hardware</span>
+</div>
+<div class="category-tags">의류용 메탈 파츠 · 스냅 세트 · 리벳 · 아일릿</div>
+<div class="category-items">
+<div class="category-chip">도금 스냅 단추</div>
+<div class="category-chip">프레스 스냅 세트</div>
+<div class="category-chip">장식 단추</div>
+<div class="category-chip">리벳 및 캡</div>
+<div class="category-chip">아일릿(아이렛)</div>
+</div>
+<p class="category-desc">
+                        외관 디자인과 내구성에 직접적으로 영향을 주는 스냅, 단추, 아일릿류를
+                        봉제·프레스 방식에 맞게 구성해 드립니다. 기관용 유니폼 등 규격이 필요한 경우
+                        사양 협의 후 대응이 가능합니다.
+                    </p>
+</div>
+<div class="category-block">
+<div class="category-block-header">
+<h2>라벨 · 와펜 · 탭 (Branding Parts)</h2>
+<span class="category-badge">Branding</span>
+</div>
+<div class="category-tags">직조 라벨 · 실리콘 와펜 · 러버라벨 · 탭 등</div>
+<div class="category-items">
+<div class="category-chip">직조 라벨</div>
+<div class="category-chip">실리콘/러버 와펜</div>
+<div class="category-chip">가죽 라벨(천연/인조)</div>
+<div class="category-chip">네크/사이드 라벨</div>
+<div class="category-chip">브랜드 탭</div>
+</div>
+<p class="category-desc">
+                        브랜드 아이덴티티를 보여주는 라벨/와펜/탭류는 디자인과 생산 공정을 함께 고려해야 합니다.
+                        유림상사는 다양한 사례를 바탕으로, 브랜드 콘셉트에 맞는 브랜딩 파츠 구성을 도와드립니다.
+                    </p>
+</div>
+<div class="category-block">
+<div class="category-block-header">
+<h2>밴드 · 웨빙 · 코드류</h2>
+<span class="category-badge">Tape &amp; Webbing</span>
+</div>
+<div class="category-tags">허리밴드 · 어깨끈 · 스트랩 · 코드</div>
+<div class="category-items">
+<div class="category-chip">허리밴드/고무줄</div>
+<div class="category-chip">나일론 웨빙</div>
+<div class="category-chip">면/폴리 혼방 웨빙</div>
+<div class="category-chip">신축 코드</div>
+<div class="category-chip">플랫/라운드 끈</div>
+</div>
+<p class="category-desc">
+                        팬츠 허리, 후드 스트링, 백팩·커버류 스트랩 등 다양한 용도에 쓰이는 밴드·웨빙·코드류를
+                        용도와 내구성 기준에 맞춰 제안합니다.
+                    </p>
+</div>
+<div class="category-block">
+<div class="category-block-header">
+<h2>버클 · 스트랩 하드웨어</h2>
+<span class="category-badge">Hardware</span>
+</div>
+<div class="category-tags">백팩 · 커버류 · 장비용 파츠</div>
+<div class="category-items">
+<div class="category-chip">플라스틱 버클</div>
+<div class="category-chip">메탈 버클</div>
+<div class="category-chip">조절 슬라이더</div>
+<div class="category-chip">D링 / O링</div>
+<div class="category-chip">후크류</div>
+</div>
+<p class="category-desc">
+                        장비·커버류와 스포츠/아웃도어 제품에 사용되는 스트랩 하드웨어 파츠를 구성합니다.
+                        인장 강도, 사용 빈도, 외관 등을 함께 고려해 적합한 사양을 검토합니다.
+                    </p>
+</div>
+<div class="category-block">
+<div class="category-block-header">
+<h2>기능성 &amp; 특수 부자재</h2>
+<span class="category-badge">Special</span>
+</div>
+<div class="category-tags">리플렉티브 · 방수 · 난연 등</div>
+<div class="category-items">
+<div class="category-chip">리플렉티브(반사) 테이프</div>
+<div class="category-chip">방수 테이프/필름</div>
+<div class="category-chip">난연/내열 사양</div>
+<div class="category-chip">특수 코팅 파츠</div>
+</div>
+<p class="category-desc">
+                        작업 환경이나 제품 용도에 따라 필요한 기능성 부자재(리플렉티브, 방수, 난연 등)를
+                        프로젝트별로 검토해 제안드립니다.
+                    </p>
+</div>
+<p class="note">
+                    ※ 위 카테고리는 이해를 돕기 위한 정리이며, 실제 취급 가능 품목은 더 다양합니다.<br/>
+                    기존에 사용 중인 부자재 샘플이나 레퍼런스 사진을 공유해 주시면, 가장 유사하거나 개선된 사양으로 제안 드립니다.
+                </p>
+</section>
+</div>
+</div>
+</main>
+<footer>
+<div class="container">
+<div class="footer-inner">
+<div>© <span id="year"></span> YURIM TRIMS. All rights reserved.</div>
+<div>상호명: 유림상사 · 사업자등록번호: (입력) · 주소: (입력) · 연락처: (입력) · 이메일: (입력)</div>
+</div>
+</div>
+</footer>
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+<a class="floating-kakao" href="https://open.kakao.com/o/spgv1u3h" rel="noopener" target="_blank"><img alt="카카오톡 상담" src="kakao_floating.png"/></a></body>
+</html>

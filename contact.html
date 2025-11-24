@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>유림서플라이 문의하기 | YURIM SUPPLIES Contact</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="유림서플라이는 스포츠 의류와 각종 커버류를 위한 부자재를 원스톱으로 공급합니다. 카카오톡, 이메일, 전화로 편하게 문의해주세요.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, system-ui,
+                         "Apple SD Gothic Neo", "Segoe UI", Roboto, sans-serif;
+            background: radial-gradient(circle at top left, #fef3e7 0, #f5f5f7 42%, #e5e7eb 100%);
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        main {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+        }
+        .contact-shell {
+            width: 100%;
+            max-width: 980px;
+            background: rgba(255,255,255,0.96);
+            border-radius: 28px;
+            box-shadow: 0 22px 60px rgba(15,23,42,0.14);
+            overflow: hidden;
+            border: 1px solid rgba(229,231,235,0.9);
+        }
+        .contact-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        }
+        .contact-left {
+            padding: 30px 32px 32px;
+            border-right: 1px solid #e5e7eb;
+            background: linear-gradient(135deg, #0b1020 0%, #050816 32%, #111827 100%);
+            color: #f9fafb;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-left::before {
+            content: "";
+            position: absolute;
+            inset: -20%;
+            background:
+                radial-gradient(circle at top left, rgba(255,123,42,0.26), transparent 60%),
+                radial-gradient(circle at bottom right, rgba(251,191,36,0.16), transparent 60%);
+            opacity: 0.85;
+            pointer-events: none;
+        }
+        .contact-left-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.26);
+            font-size: 11px;
+            color: #e5e7eb;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            margin-bottom: 10px;
+            background: rgba(15,23,42,0.6);
+        }
+        .tag strong {
+            margin-right: 4px;
+        }
+        h1 {
+            font-family: "Outfit", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+            font-size: 26px;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #e5e7eb;
+            margin-bottom: 18px;
+        }
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .pill {
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.68);
+            border: 1px solid rgba(148,163,184,0.6);
+            color: #e5e7eb;
+        }
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .contact-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .contact-icon.kakao {
+            background: #FEE500;
+            color: #111827;
+        }
+        .contact-icon.mail {
+            background: rgba(37,99,235,0.18);
+            color: #bfdbfe;
+        }
+        .contact-icon.phone {
+            background: rgba(16,185,129,0.18);
+            color: #a7f3d0;
+        }
+        .contact-label {
+            font-weight: 500;
+        }
+        .contact-value {
+            color: #e5e7eb;
+        }
+        .helper-text {
+            font-size: 11px;
+            color: #cbd5f5;
+            margin-top: 6px;
+        }
+        .kakao-cta {
+            margin-top: 10px;
+        }
+        .kakao-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #FEE500;
+            color: #111827;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 10px 32px rgba(15,23,42,0.4);
+        }
+        .kakao-cta span.k-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            background: #111827;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #FEE500;
+            font-size: 11px;
+        }
+        .contact-left-footer {
+            margin-top: 22px;
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .contact-right {
+            padding: 30px 30px 32px;
+        }
+        .form-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .form-desc {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-size: 12px;
+            color: #4b5563;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .field-group {
+            display: flex;
+            gap: 10px;
+        }
+        .field {
+            flex: 1;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px 11px;
+            border-radius: 11px;
+            border: 1px solid #d1d5db;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+            background: #f9fafb;
+        }
+        input:focus, textarea:focus {
+            border-color: #fb923c;
+            box-shadow: 0 0 0 1px rgba(251,146,60,0.25);
+            background: #ffffff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .hint {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+        .submit-row {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 11px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            background: linear-gradient(135deg, #fb923c, #f97316);
+            color: #111827;
+            box-shadow: 0 12px 30px rgba(249,115,22,0.45);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        button:hover {
+            filter: brightness(0.97);
+        }
+        button span.icon {
+            font-size: 15px;
+        }
+        .submit-note {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .back-link a {
+            color: #f97316;
+            font-weight: 500;
+        }
+
+        @media (max-width: 840px) {
+            .contact-inner {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .contact-left {
+                border-right: none;
+                border-bottom: 1px solid #1f2937;
+            }
+        }
+        @media (max-width: 520px) {
+            .contact-left, .contact-right {
+                padding: 24px 18px 24px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div class="contact-shell">
+        <div class="contact-inner">
+            <!-- Left: 채널 안내 -->
+            <section class="contact-left">
+                <div class="contact-left-inner">
+                    <div class="tag"><strong>CONTACT</strong> · 상담 채널</div>
+                    <h1>어떤 방식이 편하신가요?</h1>
+                    <p class="subtitle">
+                        디자이너 실무 문의부터 대량 발주까지,<br />
+                        편하신 채널로 연락 주시면 빠르게 회신드립니다.
+                    </p>
+
+                    <div class="pill-row">
+                        <span class="pill">샘플·스와치 문의</span>
+                        <span class="pill">스포츠 의류 &amp; 유니폼</span>
+                        <span class="pill">텐트·커버류 부자재</span>
+                        <span class="pill">원가 &amp; 납기 상담</span>
+                    </div>
+
+                    <div class="contact-options">
+                        <div class="contact-item">
+                            <div class="contact-icon kakao">K</div>
+                            <div>
+                                <div class="contact-label">카카오톡 오픈채팅</div>
+                                <div class="contact-value">실시간 1:1 상담 · 유림서플라이</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon mail">@</div>
+                            <div>
+                                <div class="contact-label">이메일</div>
+                                <div class="contact-value">info@yurimsupplies.co.kr</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon phone">☎</div>
+                            <div>
+                                <div class="contact-label">전화</div>
+                                <div class="contact-value">000-0000-0000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="helper-text">
+                        ※ 이메일·전화 정보는 실제 사용하는 회사 연락처로 수정해서 사용하시면 됩니다.
+                    </p>
+
+                    <div class="kakao-cta">
+                        <a href="https://open.kakao.com/o/spgv1u3h" target="_blank" rel="noopener">
+                            <span class="k-dot">K</span>
+                            <span>카카오톡으로 바로 상담하기</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-left-footer">
+                        영업/상담 가능 시간: 평일 09:00–18:00 (주말/공휴일 휴무, 카카오톡은 확인 시 순차 답변)
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right: 폼 -->
+            <section class="contact-right">
+                <div class="form-title">메일로 문의 남기기</div>
+                <div class="form-desc">
+                    프로젝트 정보나 레퍼런스 자료가 있다면 함께 적어주시면 더 정확하게 제안드릴 수 있습니다.
+                </div>
+
+                <!-- mailto 방식: 실제 사용 시 이메일 주소를 회사 도메인으로 교체 -->
+                <form action="mailto:info@yurimsupplies.co.kr" method="POST" enctype="text/plain">
+                    <div class="field-group">
+                        <div class="field">
+                            <label for="name">이름 *</label>
+                            <input type="text" id="name" name="이름" placeholder="홍길동" required>
+                        </div>
+                        <div class="field">
+                            <label for="company">회사명 / 브랜드</label>
+                            <input type="text" id="company" name="회사명/브랜드" placeholder="예: OO스포츠 / OO디자인">
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field">
+                            <label for="email">이메일 *</label>
+                            <input type="email" id="email" name="이메일" placeholder="you@example.com" required>
+                        </div>
+                        <div class="field">
+                            <label for="phone">연락처</label>
+                            <input type="text" id="phone" name="연락처" placeholder="010-0000-0000">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="subject">문의 제목</label>
+                        <input type="text" id="subject" name="문의 제목" placeholder="예: 스포츠 자켓 지퍼·스토퍼 개발 문의">
+                    </div>
+
+                    <div class="field">
+                        <label for="message">문의 내용 *</label>
+                        <textarea id="message" name="문의 내용" placeholder="필요하신 부자재 종류, 수량, 납기 희망일, 참고 브랜드/이미지 등을 자유롭게 적어주세요." required></textarea>
+                    </div>
+
+                    <div class="submit-row">
+                        <button type="submit">
+                            <span class="icon">✉</span>
+                            <span>메일로 문의 보내기</span>
+                        </button>
+                        <div class="submit-note">
+                            버튼을 누르시면 사용 중인 메일 프로그램이 열리며, 작성하신 내용이 자동으로 입력됩니다.
+                        </div>
+                    </div>
+                </form>
+
+                <div class="back-link">
+                    메인으로 돌아가기 · <a href="index.html">유림서플라이 홈</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+</body>
+</html>
